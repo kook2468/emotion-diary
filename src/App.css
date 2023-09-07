@@ -362,3 +362,76 @@ header button {
   font-weight: 400;
   line-height: 2.5;
 }
+
+/* Calendar */
+.Calendar {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.Calendar thead {
+  text-align: center;
+  font-size: 20px;
+  height: 30px;
+  font-family: "Yeon Sung", cursive;
+}
+
+/* CalendarItem */
+.CalendarItem {
+  vertical-align: baseline;
+  font-size: 20px;
+  height: 110px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.Calendar tr td:first-child {
+  color: red;
+}
+
+.Calendar tr td:last-child {
+  color: blue;
+}
+.CalendarItem_on {
+}
+
+.CalendarItem_off {
+  color: #ddd !important;
+}
+
+/* CalendarItemChip */
+.CalendarItemChip {
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #eee;
+  border-radius: 5px;
+
+  color: white;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  margin-bottom: 3px;
+}
+
+.CalendarItemChip_emotion_1 {
+  background-color: #64c964;
+}
+.CalendarItemChip_emotion_2 {
+  background-color: #9dd772;
+}
+.CalendarItemChip_emotion_3 {
+  background-color: #fdce17;
+}
+.CalendarItemChip_emotion_4 {
+  background-color: #fd8446;
+}
+.CalendarItemChip_emotion_5 {
+  background-color: #fd565f;
+  color: white;
+}

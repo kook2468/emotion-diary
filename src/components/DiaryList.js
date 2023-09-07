@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Calendar from "./Calendar";
 import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
+
+const viewOptionList = [
+  { value: "list", name: "목록보기" },
+  { value: "calendar", name: "캘린더보기" },
+];
 
 const sortOptionList = [
   { value: "latest", name: "최신순" },
@@ -34,8 +40,9 @@ const ControlMenu = React.memo(({ value, onChange, optionList }) => {
 });
 
 const DiaryList = ({ diaryList }) => {
-  console.log(diaryList);
+  console.log("diaryList", diaryList);
   const navigate = useNavigate();
+  const [viewType, setViewType] = useState("list");
   const [sortType, setSortType] = useState("latest");
   const [filter, setFilter] = useState("all");
 
@@ -69,10 +76,17 @@ const DiaryList = ({ diaryList }) => {
       <div className="menu_wrapper">
         <div className="left_col">
           <ControlMenu
-            value={sortType}
-            onChange={setSortType}
-            optionList={sortOptionList}
+            value={viewType}
+            onChange={setViewType}
+            optionList={viewOptionList}
           />
+          {viewType === "list" && (
+            <ControlMenu
+              value={sortType}
+              onChange={setSortType}
+              optionList={sortOptionList}
+            />
+          )}
           <ControlMenu
             value={filter}
             onChange={setFilter}
@@ -88,9 +102,12 @@ const DiaryList = ({ diaryList }) => {
         </div>
       </div>
 
-      {getProcessedDiaryList().map((it) => (
-        <DiaryItem key={it.id} {...it} />
-      ))}
+      {viewType === "list" &&
+        getProcessedDiaryList().map((it) => <DiaryItem key={it.id} {...it} />)}
+
+      {viewType === "calendar" && (
+        <Calendar diaryList={getProcessedDiaryList()} />
+      )}
     </div>
   );
 };

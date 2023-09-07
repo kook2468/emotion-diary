@@ -1,9 +1,11 @@
-import { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { DiaryStateContext } from "../App";
 
 import MyHeader from "./../components/MyHeader";
 import MyButton from "./../components/MyButton";
 import DiaryList from "../components/DiaryList";
+
+export const CurDateStateContext = React.createContext();
 
 const Home = () => {
   const diaryList = useContext(DiaryStateContext);
@@ -57,14 +59,14 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <CurDateStateContext.Provider value={curDate}>
       <MyHeader
         headText={headText}
         leftChild={<MyButton text={"<"} onClick={() => decreaseMonth()} />}
         rightChild={<MyButton text={">"} onClick={() => increaseMonth()} />}
       />
       <DiaryList diaryList={data} />
-    </div>
+    </CurDateStateContext.Provider>
   );
 };
 
